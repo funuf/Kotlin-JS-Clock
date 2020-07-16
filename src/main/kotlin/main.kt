@@ -242,10 +242,10 @@ class Clock {
             textAlign = CanvasTextAlign.CENTER
 
             font = "${radius / 10}px Arial"
-            fillText("Kotlin/JS-Clock", 0.0, -(radius / 2))
+            fillText("Simple-Clock", 0.0, -(radius / 2))
 
             font = "${radius / 15}px Arial"
-            fillText("Created by hellofun...", 0.0, -(radius / 3))
+            fillText("Time is life...", 0.0, -(radius / 3))
 
             restore()
         }
