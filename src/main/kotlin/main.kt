@@ -1,10 +1,8 @@
 import org.w3c.dom.*
-import kotlin.browser.*
+import kotlin.browser.document
+import kotlin.browser.window
 import kotlin.js.Date
-import kotlin.math.PI
-import kotlin.math.cos
-import kotlin.math.min
-import kotlin.math.sin
+import kotlin.math.*
 
 /**
  * 使用Kotlin语言开发的Web时钟
@@ -25,15 +23,14 @@ fun main(args: Array<String>) {
 }
 
 class Clock {
-    /**
-     * 表盘半径
-     */
-    private val radius = 400.0
     private val PI2 = 2 * PI
 
     private val windowWidth = window.innerWidth
     private val windowHeight = window.innerHeight
 
+    private val radius = (min(windowWidth, windowHeight) - 100) / 2.0
+
+    private val canvas: HTMLCanvasElement
     private val canvasContext: CanvasRenderingContext2D?
 
     init {
@@ -49,6 +46,20 @@ class Clock {
 
             val tmpContext = getContext("2d")
             canvasContext = if (tmpContext == null) null else tmpContext as CanvasRenderingContext2D
+            canvas = this
+
+
+            // https://stackoverflow.com/questions/18017260/how-to-add-hyperlink-to-image-in-canvas-element
+            canvas.addEventListener(
+                    "click",
+                    { _ -> window.open("https://github.com/hellofun-github/Kotlin-JS-Clock") },
+                    false
+            )
+            canvas.addEventListener(
+                    "mousemove",
+                    { _ -> document.body!!.style.cursor = "pointer" },
+                    false
+            )
         }
     }
 
@@ -100,9 +111,9 @@ class Clock {
             fillStyle = "#f00"
 
             moveTo(0.0, 30.0)
-            lineTo(-5.0,-0.0)
+            lineTo(-5.0, -0.0)
             lineTo(0.0, -radius + 50)
-            lineTo(5.0,0.0)
+            lineTo(5.0, 0.0)
             lineTo(0.0, 30.0)
 
             fill()
@@ -221,6 +232,7 @@ class Clock {
      * 绘制品牌
      */
     private fun drawBrand() {
+
         canvasContext?.apply {
             save()
             // 变换原点
@@ -237,6 +249,7 @@ class Clock {
             restore()
         }
     }
+
 
     /**
      * 绘制表盘（背景）
