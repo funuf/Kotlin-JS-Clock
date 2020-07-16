@@ -136,7 +136,7 @@ class Clock {
             lineCap = CanvasLineCap.ROUND
             lineWidth = 8.0
             moveTo(0.0, 15.0)
-            lineTo(0.0, -radius / 2 - 80)
+            lineTo(0.0, -radius / 4 * 3)
             stroke()
             restore()
         }
@@ -235,16 +235,17 @@ class Clock {
 
         canvasContext?.apply {
             save()
-            // 变换原点
+
             translate(windowWidth / 2.0, windowHeight / 2.0)
 
-            font = "35px Arial"
             textBaseline = CanvasTextBaseline.MIDDLE
             textAlign = CanvasTextAlign.CENTER
 
-            fillText("Kotlin/JS-Clock", 0.0, -200.0)
-            font = "15px Arial"
-            fillText("Created by hellofun...", 0.0, -100.0)
+            font = "${radius / 10}px Arial"
+            fillText("Kotlin/JS-Clock", 0.0, -(radius / 2))
+
+            font = "${radius / 15}px Arial"
+            fillText("Created by hellofun...", 0.0, -(radius / 3))
 
             restore()
         }
