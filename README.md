@@ -1,0 +1,3 @@
+# Kotlin-JS-Clock
+Write a clock by Kotlin/JS when learn Kotlin...
+[See the effect](https://abc.hellofun.fun/kotlinjs-clock/index.html)
